@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+require './computer_player'
+require './minesweeper'
+
+if ARGV.length < 2
+  puts "usage: ./human_plays <dimension> <number of mines>"
+  exit(1)
+end
+dimension, mines = ARGV.map(&:to_i)
+minesweeper = Minesweeper.new(dimension, mines, ComputerPlayer.new(dimension, mines))
+minesweeper.run()
