@@ -47,6 +47,6 @@ class Minesweeper
       end
     end
     display if show
+    @state == :won
   end
-  @state == :won
 end
