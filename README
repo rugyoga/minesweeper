@@ -1,4 +1,8 @@
-This is an implementation of the classic Minesweeper game in ruby.
+# Guy's Minesweeper solver/generator
+
+This is an implementation of the [classic Minesweeper game]
+(https://en.wikipedia.org/wiki/Minesweeper_(video_game))
+in ruby.
 
 It has three scripts:
  - computer_plays, takes a dimension and number of bombs as arguments
