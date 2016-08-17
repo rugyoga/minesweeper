@@ -2,7 +2,9 @@ class Board
   attr_reader :height, :width
 
   def initialize(width, height, default)
-    @width, @height, @default = width, height, default
+    @width = width
+    @height = height
+    @default = default
     @blank_column = Hash.new(@default)
     @board = {}
   end
@@ -20,28 +22,32 @@ class Board
   end
 
   def adjacencies(x, y)
-    left,  right = x-1, x+1
-    above, below = y-1, y+1
+    left = x - 1
+    right = x + 1
+    above = y - 1
+    below = y + 1
     [[left, above], [x, above], [right, above],
      [left, y],                 [right, y],
      [left, below], [x, below], [right, below]]
-     .select{ |x,y| legal?(x,y) }
+      .select { |p, q| legal?(p, q) }
   end
 
   def adjacent_match(x, y, c)
-    adjacencies(x, y).select{ |x, y| get(x, y) == c }
+    adjacencies(x, y).select { |p, q| get(p, q) == c }
   end
 
   def adjacent?(x1, y1, x2, y2)
-    (x1 - x2).abs < 2 and (y1 - y2).abs < 2 and !(x1 == x2 and y1 == y2)
+    (x1 - x2).abs < 2 && (y1 - y2).abs < 2 && !(x1 == x2 && y1 == y2)
   end
 
   def each
     if block_given?
-      @board.each{ |x, column| column.each{ |y, square| yield(x, y, square) } }
+      @board.each do |x, column|
+        column.each { |y, square| yield(x, y, square) }
+      end
     else
       triples = []
-      each{ |x, y, s| triples << [x,y,s] }
+      each { |x, y, s| triples << [x, y, s] }
       triples
     end
   end

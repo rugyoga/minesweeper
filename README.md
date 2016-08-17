@@ -15,3 +15,4 @@ It has three scripts:
  - harness, allows you to benchmark the computer player.
  It takes a third parameter, attempts, and it measures the time taken
  and the success rate of the computer player solving that many puzzles.
+ It has about a 75% success rate with dimension: 10, bombs: 10. Not bad...

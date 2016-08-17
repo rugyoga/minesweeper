@@ -4,13 +4,13 @@ require './computer_player'
 require './minesweeper'
 
 if ARGV.length < 2
-  puts "usage: ./harness <dimension> <number of mines> <attempts>"
+  puts 'usage: ./harness <dimension> <number of mines> <attempts>'
   exit(1)
 end
 dimension, mines, attempts = ARGV.map(&:to_i)
 successes = 0
 time = Benchmark.measure do
-  attempts.times do |i|
+  attempts.times do |_i|
     minesweeper = Minesweeper.new(dimension, mines, ComputerPlayer.new(dimension, mines))
     successes += 1 if minesweeper.run(false)
   end

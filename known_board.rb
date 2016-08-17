@@ -9,19 +9,19 @@ class KnownBoard < Board
     super(width, height, UNKNOWN)
   end
 
-  def known?(x,y)
+  def known?(x, y)
     get(x, y) != UNKNOWN
   end
 
-  def unknown?(x,y)
+  def unknown?(x, y)
     get(x, y) == UNKNOWN
   end
 
-  def flag!(x,y)
+  def flag!(x, y)
     set(x, y, FLAGGED)
   end
 
-  def flagged?(x,y)
+  def flagged?(x, y)
     get(x, y) == FLAGGED
   end
 

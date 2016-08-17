@@ -16,8 +16,9 @@ class MineBoard < Board
 
   def generate(no_of_mines)
     while no_of_mines > 0
-      x, y = rand(@width), rand(@height)
-      unless self.mine?(x, y)
+      x = rand(@width)
+      y = rand(@height)
+      unless mine?(x, y)
         set(x, y, MINE)
         no_of_mines -= 1
       end
@@ -25,7 +26,7 @@ class MineBoard < Board
   end
 
   def calculate_counts
-    each.each do |x, y, s| # double each to avoid updating the object being traversed
+    each.each do |x, y, _s| # double each to avoid updating the object being traversed
       adjacencies(x, y).each do |x2, y2|
         set(x2, y2, get(x2, y2) + 1) unless mine?(x2, y2)
       end
@@ -34,6 +35,6 @@ class MineBoard < Board
 
   def to_s(x, y)
     m = get(x, y)
-    m == MINE ? '*' : (m == 0 ? '.' : m.to_s)
+    m == MINE ? '*' : (m.zero? ? '.' : m.to_s)
   end
 end

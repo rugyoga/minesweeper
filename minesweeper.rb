@@ -13,12 +13,12 @@ class Minesweeper
   end
 
   def to_s(x, y)
-    @state == :won && !@player.known?( x, y ) ? '*' : @player.to_s(x, y)
+    @state == :won && !@player.known?(x, y) ? '*' : @player.to_s(x, y)
   end
 
   def display
     @dimension.times do |y|
-      puts @dimension.times.map{ |x| to_s(x, y) }.join
+      puts Array.new(@dimension) { |x| to_s(x, y) }.join
     end
   end
 
@@ -33,16 +33,16 @@ class Minesweeper
     @dimension * @dimension == @move_number - 1 + @mines
   end
 
-  def run(show=true)
+  def run(show = true)
     while @state == :running
       display if show
-      m = @player.get_move()
+      m = @player.get_move
       puts "##{@move_number}: #{m[0]},#{m[1]}" if show
       if play_move(m)
-        puts "Mine exploded!" if show
+        puts 'Mine exploded!' if show
         @state = :lost
       elsif check_win
-        puts "All mines found!" if show
+        puts 'All mines found!' if show
         @state = :won
       end
     end
